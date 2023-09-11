@@ -29,23 +29,28 @@ Additional detailed documentation is provided as comments in the python programs
 ![](https://github.com/ronihogri/Should-I-get-a-yearly-ticket-for-the-public-transit-system-in-Vienna-python-JSON-SQL-API/blob/main/images/download%20location%20history.png) 
 1.1 Go to [https://takeout.google.com/](https://takeout.google.com/), select ‘Location History’, and then scroll down and click on ‘Next step’. 
 
+
 ![](https://github.com/ronihogri/Should-I-get-a-yearly-ticket-for-the-public-transit-system-in-Vienna-python-JSON-SQL-API/blob/main/images/download%20location%20history2.png) 
 1.2 Choose your preferred transfer method (e.g., via email). Mark ‘Export once’, and set ‘File type & size’ according to your preferences. Then click on ‘Create export’.
+
 
 ### Step 2: Unzip your location history data
 
 ![](https://github.com/ronihogri/Should-I-get-a-yearly-ticket-for-the-public-transit-system-in-Vienna-python-JSON-SQL-API/blob/main/images/unzip.png)
 Example of zipped location history.
 
+
 ### Step 3: Use the ‘json_redact.py’ program to edit JSON files obtained from Google
 
 ![](https://github.com/ronihogri/Should-I-get-a-yearly-ticket-for-the-public-transit-system-in-Vienna-python-JSON-SQL-API/blob/main/images/json_redact.png) 
 Output of the ‘json_redact.py’ program, showing the paths of the newly created redacted location history JSON files.
- 
+
+ 
 ### Step 4 (using the main python program):
 
 ![](https://github.com/ronihogri/Should-I-get-a-yearly-ticket-for-the-public-transit-system-in-Vienna-python-JSON-SQL-API/blob/main/images/cmd_retrieving.png) 
 4.1 When you activate the main program, the prices for the different ticket types will be retrieved from the web and displayed. Once prices are set, the program will start retrieving locations based on the low-resolution geographic coordinates, using a [mock-version of the Google API provided by Dr. Charles Severance](http://py4e-data.dr-chuck.net/json?). I chose to use this API since it doesn’t require each potential user to obtain their own Google API key. The process of retrieving locations in this way might take some time, so progress is continually displayed. It is possible to restart the program multiple times (e.g., after downloading and redacting additional data) – unique journeys will be added to the SQL table as required. Note that the provided ‘Redacted’ folder already contains a filled SQLite file (‘2023_SQL.sqlite’) – to fill the SQL data yourself, please delete or rename this SQLite file. 
+
 
 
 ![](https://github.com/ronihogri/Should-I-get-a-yearly-ticket-for-the-public-transit-system-in-Vienna-python-JSON-SQL-API/blob/main/images/sql_tables.png) 
