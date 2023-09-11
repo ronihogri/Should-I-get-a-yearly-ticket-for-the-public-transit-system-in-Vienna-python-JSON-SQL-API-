@@ -1,5 +1,5 @@
 # Should I get the yearly pass (Jahreskarte) for the Viennese public transit system? 
-An app to check whether, for a given traveler, it would be cheaper to buy a yearly pass (Jahreskarte) for the Viennese public transit system rather than paying for a single-ride each time. Uses Googles location history data (JSON files), python, web API, and SQLite. 
+An app to check whether, for a given traveler, it would be cheaper to buy a yearly pass (Jahreskarte) for the Viennese public transit system rather than paying for a single-ride each time. Uses Googles location history data (JSON files), python, web API, and SQLite.  
 Roni Hogri, August 2023  
 <br><br>
 
