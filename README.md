@@ -1,12 +1,12 @@
 # Should-I-get-a-yearly-ticket-for-the-public-transit-system-in-Vienna-python-JSON-SQL-API-
 An app to check whether, for a given traveler, it would be cheaper to buy a yearly pass (Jahreskarte) for the Viennese public transit system rather than paying for a single-ride each time. Uses Googles location history data (JSON files), python, web API, and SQLite. 
 
-<br><br>
+<br>
 # Should I get the yearly pass (Jahreskarte) for the Viennese public transit system? 
 Example project using JSON, python, web API, and SQLite
 Roni Hogri, August 2023  
 
-<br><br>
+<br>
 ## Background
 Many people in Vienna take advantage of the city’s excellent public transit system. For frequent travelers it is often advantageous to purchase a yearly pass (Jahreskarte) rather than paying for a single-ride ticket each time. However, many people use the public transit system only occasionally, making it difficult to decide whether purchasing the Jahreskarte would be cost-effective. To address this issue, I developed a procedure utilizing Googles location history data (JSON files), python, a web API for reverse geocoding, and SQLite.   
 
