@@ -10,7 +10,7 @@ Many people in Vienna take advantage of the city’s excellent public transit sy
 The python program ‘annual_ticket_calculation_from_google_data.py’ (henceforth: ‘main program’) extracts location history data collected from your cell phone by Google to an SQL database. This data is then used to determine whether a yearly pass would have been more cost-effective than purchasing single-ride tickets during the period in question.   
 *Note1: In order to protect sensitive information, the main program works on a redacted version of the Google data. This version does not include details such as device ID and place IDs, and the spatial resolution of geographical coordinates has been reduced. To produce such redacted files, use the ‘json_redact.py’ program (see step 3 below). 
 Additional detailed documentation is provided as comments in the python programs.  
-*Note2: For required python libraries, please see the file 'requirements.txt'
+*Note2: For required python libraries, please see ['requirements.txt'](https://github.com/ronihogri/Should-I-get-a-yearly-ticket-for-the-public-transit-system-in-Vienna-python-JSON-SQL-API/blob/main/requirements.txt).
 <br><br>
 ## Steps (see pictures and comments below)
 1.	Connect to your Google account and download your location history from [https://takeout.google.com/](https://takeout.google.com/)
