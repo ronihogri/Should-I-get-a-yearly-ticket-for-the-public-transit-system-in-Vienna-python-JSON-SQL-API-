@@ -68,6 +68,6 @@ This step is recommended if you would like to share your location history with o
   4.3 Once all journeys in the selected JSON files have been stored in the SQLite file, the program reports how many new journeys were inserted into the SQLite file during the current run, and how many complete journey records exist in the SQLite file. Next, the prices for the different ticket types are retrieved from the web and displayed to be confirmed by the user. The program then provides a short summary of the information extracted from the existing SQLite file. Finally, the program reports whether a yearly ticket (Jahreskarte) would have been more cost-effective than using single-ride tickets for the selected period(s), and how much money would be saved by using the more cost-effective method. 
 
 <br><br>
-  ![](https://github.com/ronihogri/Should-I-get-a-yearly-ticket-for-the-public-transit-system-in-Vienna-python-JSON-SQL-API/blob/main/images/cmd_plots.png) 
+  ![](https://github.com/ronihogri/Should-I-get-a-yearly-ticket-for-the-public-transit-system-in-Vienna-python-JSON-SQL-API/blob/main/images/plots.png) 
   
   4.4 The program displays two graphs showing relevant information obtained from Google’s location history. Left: A comparison between single-ride and yearly pass tickets for the selected period. Right: The normalized frequency of different kinds of journeys during the selected period, to facilitate the identification of travel mode trends over time. 
