@@ -77,7 +77,8 @@ def terminate(m1='', m2='') :
     Args:   
         m1, m2 (str): Messages providing the context for program termination.
         
-    Globals: sql_file (sqlite3.Connection): Connection to SQL database.
+    Globals: 
+        sql_file (sqlite3.Connection): Connection to SQL database.
         
     Returns:
         None
