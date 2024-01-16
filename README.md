@@ -18,8 +18,9 @@ For the required python libraries, please see ['requirements.txt'](https://githu
 1.	Connect to your Google account and download your location history from [https://takeout.google.com/](https://takeout.google.com/)
 2.	Unzip the folders you want to analyze, under ‘Location History\ Semantic Location History’. It’s possible to select data from one year, or from multiple years. 
 3.	Optional: If you would like to share your location history files with others, you have the possibility to remove sensitive and unnecessary data from your Google location history files. To do this, run ‘json_redact.py’. 
-4.	Run the main python program (‘annual_ticket_calculation_from_google_data.py’) and follow the instructions you receive. 
-<u>Note:</u> If you prefer not to download your own location history data, and would like to test the main program works on my example data, skip steps 1-3 and run the main program on the provided ‘2023_REDACTED’ folder. The ‘2023_REDACTED’ folder already contains an SQLite file containing the information extracted from the example JSON files (‘2023_REDACTED_SQL.sqlite’). If you want the main program to export the Google JSON data to a new SQLite file, please delete or rename this file.
+4.	Run the main python program (‘annual_ticket_calculation_from_google_data.py’) and follow the instructions you receive.
+    
+**Note:** If you prefer not to download your own location history data, and would like to test the main program works on my example data, <u>skip steps 1-3</u> and run the main program on the provided ‘2023_REDACTED’ folder. The ‘2023_REDACTED’ folder already contains an SQLite file containing the information extracted from the example JSON files (‘2023_REDACTED_SQL.sqlite’). If you want the main program to export the Google JSON data to a new SQLite file, please delete or rename this file.
 <br><br>
 ### Step 1: Download location history from your Google account
 
