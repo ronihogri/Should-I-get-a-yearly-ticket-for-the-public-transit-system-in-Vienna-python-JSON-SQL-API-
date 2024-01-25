@@ -40,8 +40,8 @@ For the required python libraries, please see ['requirements.txt'](https://githu
   Example of zipped location history.
 
 <br><br>
-### Step 3 (optional): Use the ‘json_redact.py’ program to remove sensitive information from JSON files obtained from Google
-This step is recommended if you would like to share your location history with others.
+### Step 3 (recommended): Use the ‘json_redact.py’ program to trim JSON files obtained from Google and remove potentially sensitive information:
+This step is highly recommended if you would like to share your location history with others. It would also make the main program run faster.
   
   ![](https://github.com/ronihogri/Should-I-get-a-yearly-ticket-for-the-public-transit-system-in-Vienna-python-JSON-SQL-API/blob/main/images/json_redact.png) 
   
@@ -57,11 +57,11 @@ This step is recommended if you would like to share your location history with o
 <br><br>
   ![](https://github.com/ronihogri/Should-I-get-a-yearly-ticket-for-the-public-transit-system-in-Vienna-python-JSON-SQL-API/blob/main/images/sql_tables.png) 
 
-  4.2 Tables created in SQLite by running the main program on my example JSON files ('2023_REDACTED' folder). The main table is called ‘Journeys’ (shown on the right). Columns ending with ‘_id’ refer to variables stored in the other tables.   
+  4.2 Tables created in SQLite by running the main program on my example JSON files ('2023_REDACTED' folder). The main table is called ‘Journeys’ (shown on the right), and it consists of the following columns: 
+- ‘StartTime’ and ‘EndTime’ refer to the beginning and end times of journeys, respectively; this is important for determining the duration of a journey and for deciding whether multiple journeys actually belong to the same trip for which one single-ride ticket would suffice (e.g., subway + tram). In addition, ‘StartTime’ is used as the primary key of this table (since no 2 journeys can start at the exact same time).
 - ‘StartCity_id’ and ‘EndCity_id’ refer to the locations in which journeys began and ended, respectively; the main python program uses this information to decide whether public transit trips were within Vienna (otherwise, other types of tickets, with different prices, would be required).
-- ‘activityGuess_id’ refers to Google’s best guess regarding the type of journey recorded (see ‘Activity’ table, on the left). Google’s level of confidence regarding this guess (as %) is shown under ‘P_activity’. ‘pubTransGuess_id’ and ‘P_transGuess’ refer to Google’s best guess involving public transit use for each journey and its confidence level, respectively. For both types of guesses (‘activityGuess_id’ and ‘pubTransGuess_id’), only journeys where the confidence level (‘P_activity’ and ‘P_transGuess’, respectively) was higher than the set threshold were included in the table. Threshold value can be adjusted in the python main program as required; I set it to 30%, since this seemed to work well in cases where the ground truth was available to me. Note that, depending on Google’s confidence in its guesses, the ‘activity_Guess_id’ is often, but not always, identical to the ‘pubTransGuess_id’ of a given journey.
-- ‘StartTime’ and ‘EndTime’ refer to the beginning and end times of journeys, respectively; this is important for determining the duration of a journey and for deciding whether multiple journeys actually belong to the same trip for which one single-ride ticket would suffice (e.g., subway + tram).
-- 'Complete' refers to the status of each journey record (row): a value of 1 indicates that this row was successfully filled, while NULL indicates that it was not completely filled (i.e., program was interrupted before all columns in this row could be filled). 
+- ‘activityGuess_id’ refers to Google’s best guess regarding the type of journey recorded (see ‘Activity’ table, on the left). Google’s level of confidence regarding this guess (as %) is shown under ‘P_activity’. ‘pubTransGuess_id’ and ‘P_transGuess’ refer to Google’s best guess involving public transit use for each journey and its confidence level, respectively. For both types of guesses (‘activityGuess_id’ and ‘pubTransGuess_id’), only journeys where the confidence level (‘P_activity’ and ‘P_transGuess’, respectively) was higher than the set threshold were included in the table. Threshold value can be adjusted in the python main program as required; I set it to 30%, since this seemed to work well in cases where the ground truth was available to me. Note that, depending on Google’s confidence in its guesses, the ‘activity_Guess_id’ is often, but not always, identical to the ‘pubTransGuess_id’ of a given journey - for example, see line 98 of the Journeys table. 
+- 'Completed' shows the time at which each journey record (row) was completed; NULL indicates that this record is not yet fully populated (if the user previously interrupted the python program before all journey attributes could be exported to SQL). 
 
 <br><br>
   ![](https://github.com/ronihogri/Should-I-get-a-yearly-ticket-for-the-public-transit-system-in-Vienna-python-JSON-SQL-API/blob/main/images/cmd_summary.png) 
