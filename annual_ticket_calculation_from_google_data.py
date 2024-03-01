@@ -755,7 +755,7 @@ def activities_over_time(cur, journeys, public_transit_modes, very_first_journey
             #if the last journey in the table was not on the last day of the month, adjust days in month
             days_in_month = int(very_last_journey[8:10])            
  
-        if month_name not in counts.keys() : #fill the counts dictionary with subdictionaries
+        if month_name not in counts : #fill the counts dictionary with subdictionaries
             counts[month_name] = dict()
             counts_per_day[month_name] = dict()
             counts[month_name]['Days'] = days_in_month
@@ -770,7 +770,7 @@ def activities_over_time(cur, journeys, public_transit_modes, very_first_journey
             #didn't use the get method since I also want values of 0 to be shown
 
 
-    for month_name in counts.keys() : #for each activity type per month normalize the activity counts as counts per day        
+    for month_name in counts : #for each activity type per month normalize the activity counts as counts per day        
         for activity in activity_list :
             counts_per_day[month_name][activity] = round(counts[month_name][activity] / counts[month_name]['Days'], 2)
 
@@ -817,7 +817,7 @@ def plot_data(single_ticket_all_rides, yearly_ticket_per_period, activity_list, 
     ax1.set_ylabel('Price per Period (Euros)')
     
     #show types of journeys over time in a line graph:
-    month_list = list(counts.keys()) #list for holding full month names (month, year)
+    month_list = list(counts) #list for holding full month names (month, year)
     short_month_list = list() #list for holding short names for x axis of plot
     for month_name in month_list :
         short_month_list.append(month_name[:3])               
