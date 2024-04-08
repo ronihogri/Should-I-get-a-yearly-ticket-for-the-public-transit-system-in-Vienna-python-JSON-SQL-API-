@@ -1,15 +1,6 @@
-This program was written in python3.9
+#This program was written and tested in python3.9
 
-The following libraries need to be installed:
+#The following libraries need to be installed:
 bs4
-calendar
-datetime
-json
 matplotlib
-os
-re
-sqlite3
-ssl
-time
-urllib.request, urllib.parse, urllib.error
 
