@@ -63,7 +63,7 @@ $ python3 -m pip install -r requirements.txt
 ```console
 python3 src/json_redact.py
 ```  
-<br><br>
+
 
 This step is highly recommended if you would like to share your location history with others. It would also make the main program run faster.
   
@@ -78,7 +78,7 @@ This step is highly recommended if you would like to share your location history
 ```console
 python3 src/annual_ticket_calculation_from_google_data.py
 ```  
-<br><br>
+
   
   ![](https://github.com/ronihogri/Vienna-yearly-ticket-calculator/blob/main/images/cmd_retrieving.png) 
 
