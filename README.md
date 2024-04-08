@@ -2,6 +2,7 @@
 An app to check whether, for a given traveler, it would be cheaper to buy a yearly pass (Jahreskarte) for the Viennese public transit system rather than paying for a single-ride each time. Uses Googles location history data (JSON files), python, REST API, and SQLite.  
 Roni Hogri, August 2023. 
 <br><br>
+
 Updated January 2024:
 - Imporved documentation within py files.
 - Better handling of cases where user interrupts the filling of the SQLite file and continues at a later time point.
@@ -11,11 +12,25 @@ Updated January 2024:
 ## Background
 Many people in Vienna take advantage of the city’s excellent public transit system. For frequent travelers it is often advantageous to purchase a yearly pass (Jahreskarte) rather than paying for a single-ride ticket each time. However, many people use the public transit system only occasionally, making it difficult to decide whether purchasing the Jahreskarte would be cost-effective. To address this issue, I developed a procedure utilizing Googles location history data (JSON files), python, a REST API for reverse geocoding, and SQLite.   
 <br><br>
+
 ## How it works
-The python program ‘annual_ticket_calculation_from_google_data.py’ (henceforth: ‘main program’) extracts location history data collected from your cell phone by Google to an SQL database. This data is then used to determine whether a yearly pass would have been more cost-effective than purchasing single-ride tickets during the period in question.   
-For the required python libraries, please see ['requirements.txt'](https://github.com/ronihogri/Vienna-yearly-ticket-calculator/blob/main/requirements.txt).
-<br><br>
-## Steps (see pictures and comments below)
+The python program ‘annual_ticket_calculation_from_google_data.py’ (henceforth: ‘main program’) extracts location history data collected from your cell phone by Google to an SQL database. This data is then used to determine whether a yearly pass would have been more cost-effective than purchasing single-ride tickets during the period in question.
+<br><br>   
+
+## Installation
+
+```console
+# Clone this repository
+$ git clone https://github.com/ronihogri/Vienna-yearly-ticket-calculator.git
+
+# Go to the directory containing the python programs
+$ cd Vienna-yearly-ticket-calculator
+
+# Install requirements
+$ python3 -m pip install -r requirements.txt
+```
+
+## Workflow (see pictures and comments below)
 1.	Connect to your Google account and download your location history from [https://takeout.google.com/](https://takeout.google.com/)
 2.	Unzip the folders you want to analyze, under ‘Location History\ Semantic Location History’. It’s possible to select data from one year, or from multiple years. 
 3.	Optional: If you would like to share your location history files with others, you have the possibility to remove sensitive and unnecessary data from your Google location history files. To do this, run [json_redact.py](https://github.com/ronihogri/Vienna-yearly-ticket-calculator/blob/main/src/json_redact.py). 
@@ -23,6 +38,7 @@ For the required python libraries, please see ['requirements.txt'](https://githu
     
 **Note:** If you prefer not to download your own location history data, and would like to test the main program works on my example data, **skip steps 1-3** and run the main program on the provided ‘2023_REDACTED’ folder. The ‘2023_REDACTED’ folder already contains an SQLite file containing the information extracted from the example JSON files (‘2023_REDACTED_SQL.sqlite’). If you want the main program to export the Google JSON data to a new SQLite file, please delete or rename this file.
 <br><br>
+
 ### Step 1: Download location history from your Google account
 
   ![](https://github.com/ronihogri/Vienna-yearly-ticket-calculator/blob/main/images/download%20location%20history.png) 
@@ -34,13 +50,21 @@ For the required python libraries, please see ['requirements.txt'](https://githu
   
   1.2 Choose your preferred transfer method (e.g., via email). Mark ‘Export once’, and set ‘File type & size’ according to your preferences. Then click on ‘Create export’.
 <br><br>
+
 ### Step 2: Unzip your location history data
 
   ![](https://github.com/ronihogri/Vienna-yearly-ticket-calculator/blob/main/images/unzip.png)  
   Example of zipped location history.
 
 <br><br>
-### Step 3 (recommended): Use the ‘json_redact.py’ program to trim JSON files obtained from Google and remove potentially sensitive information:
+
+### Step 3 (recommended): Run the ‘json_redact.py’ program to trim JSON files obtained from Google and remove potentially sensitive information:
+
+```console
+python3 src/json_redact.py
+```  
+<br><br>
+
 This step is highly recommended if you would like to share your location history with others. It would also make the main program run faster.
   
   ![](https://github.com/ronihogri/Vienna-yearly-ticket-calculator/blob/main/images/json_redact.png) 
@@ -48,8 +72,14 @@ This step is highly recommended if you would like to share your location history
   Output of the ‘json_redact.py’ program, showing the paths of the newly created redacted location history JSON files.
 
 <br><br>
-### Step 4 (using the main python program):
 
+### Step 4 (run the main python program):
+
+```console
+python3 src/annual_ticket_calculation_from_google_data.py
+```  
+<br><br>
+  
   ![](https://github.com/ronihogri/Vienna-yearly-ticket-calculator/blob/main/images/cmd_retrieving.png) 
 
   4.1 When you activate the main program, it will ask you to choose a JSON file or a directory containing JSON files to analyze. It will then ask you where to store the newly created SQLite file (or where to find one that was previously created). The program will then start retrieving information regarding the journeys contained in the JSON files. Using a [mock-version of the Google API provided by Dr. Charles Severance](http://py4e-data.dr-chuck.net/json?), the program will identify locations (city, country) based on the geographic coordinates stored in the JSON files. I chose to use this API since it doesn’t require each potential user to obtain their own Google API key. The process of retrieving locations might take some time, so progress is continually displayed. It is possible to restart the program multiple times (e.g., after downloading additional data) – unique journeys will be added to the SQL table as needed. Note that the provided ‘2023_REDACTED’ folder already contains a filled SQLite file (‘2023_REDACTED_SQL.sqlite’); to fill the SQL data yourself, please delete or rename this SQLite file.
